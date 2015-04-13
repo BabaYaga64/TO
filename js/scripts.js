@@ -11,11 +11,27 @@ $(document).ready(function() {
 
         $("input#new-task-item").val("");
 
-        $(".task").click(function() {
+        $(".task").last().click(function() {
+            $("ul#completed-tasks").append("<li><span class='completed-task'>" + $(this).text() + "</span></li>");
             $(this).remove();
-            $("ul#completed-tasks").append("<li><span class='completed-task'>" + newTask.taskItem + "</span></li>");
         });
 
+        $(".completed-task").last().click(function() {
+            $("ul#tasks").append("<li><span class='task'>" + $(this).text() + "</span></li>");
+            $(this).remove();
+
+
+            // $("ul#completed-tasks").unbind();
+            // $("ul#completed-tasks").click(function() {
+            //     $("ul#tasks").append("<li><span class='task'>" + $(this).text() + "</span></li>");
+            //     $(this).remove();
+            // });
+
+        });
+
+        $("button#delete-all").click(function() {
+            $("ul#completed-tasks").empty();
+        })
     });
 
 
